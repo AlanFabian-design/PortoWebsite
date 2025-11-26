@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio – Muhammad Alan Fabiantoro</title>
+
+<style>
+/* GOOGLE FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap');
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #eef5ff;
+    overflow-x: hidden;
+    transition: background 0.4s, color 0.4s;
+}
+
+/* ANIMATED BLOB BACKGROUND */
+.blob {
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle at 30% 30%, #74a8ff, #b37bff);
+    filter: blur(120px);
+    border-radius: 50%;
+    animation: blobMove 15s infinite alternate;
+    z-index: -1;
+    opacity: 0.75;
+}
+
+@keyframes blobMove {
+    0%   { transform: translate(-200px, -100px) scale(1); }
+    50%  { transform: translate(400px, 200px) scale(1.3); }
+    100% { transform: translate(-100px, 350px) scale(1.1); }
+}
+
+/* DARK MODE */
+.dark {
+    background: #0e0f1a;
+    color: #e4e6f0;
+}
+
+.dark nav {
+    background: rgba(255,255,255,0.04);
+}
+
+.dark .card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+.dark .contact-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* NAVBAR */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 18px 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+}
+
+nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 500;
+}
+
+/* DARK MODE TOGGLE */
+.toggle-btn {
+    margin-left: 25px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* SECTION */
+.section {
+    padding: 130px 40px;
+    text-align: center;
+}
+
+/* HERO */
+.hero-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    margin-bottom: 20px;
+    
+    image-rendering: auto;   /* buat kualitas gambar tidak pecah */
+}
+
+.name {
+    font-size: 34px;
+    font-weight: 700;
+}
+
+.tagline {
+    font-size: 16px;
+    opacity: 0.75;
+    margin-bottom: 30px;
+}
+
+/* BUTTON */
+.btn-primary {
+    padding: 12px 30px;
+    background: #4aa3ff;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-block;
+    font-weight: 600;
+    margin: 5px;
+}
+
+.btn-primary:hover {
+    transform: scale(1.07);
+}
+
+/* TITLE */
+.title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 45px;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 30px;
+    padding: 0 30px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: 0.25s ease;
+}
+
+/* CARD HOVER */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+}
+
+/* FIX LINK COLOR INSIDE CARD */
+a.card {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+a.card:visited {
+    color: inherit !important;
+}
+
+a.card:hover {
+    color: inherit !important;
+}
+
+
+/* SKILL ICON */
+.skill-img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+/* ABOUT */
+.about-text {
+    max-width: 650px;
+    margin: auto;
+    opacity: 0.8;
+}
+
+/* CONTACT */
+.contact-box {
+    max-width: 500px;
+    margin: 30px auto 0;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+}
+
+.contact-box a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #1f8bff;
+}
+
+/* ANIMATION */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.9s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+
+</head>
+<body>
+
+<!-- BACKGROUND BLOBS -->
+<div class="blob"></div>
+
+<!-- NAVBAR -->
+<nav>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li> 
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="toggle-btn" id="toggleDark">🌙</div>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="section">
+    <div class="hero reveal">
+        <img src="poto.png" class="hero-img" alt=""> 
+
+        <h1 class="name">Muhammad Alan Fabiantoro</h1>
+        <p class="tagline">Student at SMK Negeri 11 Semarang</p>
+
+        <a href="#about" class="btn-primary">About Me</a>
+        <a href="CV lan.pdf" download class="btn-primary">Download CV</a>
+
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+    <h2 class="title reveal">About Me</h2>
+
+    <p class="about-text reveal">
+        Saya seorang pelajar SMK Negeri 11 Semarang yang suka belajar teknologi,
+        terutama Frontend Development, Desain 2D/3D, dan UI/UX. Saya menyukai hal-hal
+        kreatif dan selalu mencoba membuat karya baru untuk meningkatkan skill saya.
+    </p>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+    <h2 class="title reveal">My Projects</h2>
+
+  <div class="grid">
+
+    <a href="project-2d.html" class="card reveal">
+        <h3>2D Design</h3>
+        <p>Mendesain thumbnail, banner, dan grafis lainnya.</p>
+    </a>
+
+    <a href="project-3d.html" class="card reveal">
+        <h3>3D Design</h3>
+        <p>Membuat model 3D menggunakan Blender.</p>
+    </a>
+
+    <a href="project-uiux.html" class="card reveal">
+        <h3>UI/UX Design</h3>
+        <p>Mendesain tampilan aplikasi dengan layout modern.</p>
+    </a>
+
+</div>
+
+
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section">
+    <h2 class="title reveal">My Skills</h2>
+
+    <div class="grid">
+
+        <div class="card reveal">
+            <img src="figma_logo_icon_147289.png" class="skill-img">
+            <h3>Figma</h3>
+        </div>
+
+        <div class="card reveal">
+            <img src="Adobe_Illustrator_CC_icon.svg.png" class="skill-img">
+            <h3>Adobe Illustrator</h3>
+        </div>
+
+        <div class="card reveal">
+            <img src="blender.png" class="skill-img">
+            <h3>Blender 3D</h3>
+        </div>
+
+        <div class="card reveal">
+            <img src="canva.jpg" class="skill-img">
+            <h3>Canva</h3>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+    <h2 class="title reveal">Contact Me</h2>
+
+    <div class="contact-box reveal">
+    
+        
+        <p>Email: <a href="mailto:alanfabz@gmail.com">alanfabz@gmail.com</a></p>
+        <p>Instagram: <a href="https://www.instagram.com/alaanfabiann" target="_blank">alaanfabiann</a></p>
+        <p>WhatsApp: <a href="https://wa.me/6288809490650" target="_blank">+62 888-0949-0650</a></p>
+    </div>
+</section>
+
+<script>
+/* REVEAL ON SCROLL */
+const revealElements = document.querySelectorAll('.reveal');
+
+function revealOnScroll() {
+    for (let el of revealElements) {
+        const top = el.getBoundingClientRect().top;
+        if (top < window.innerHeight - 60) {
+            el.classList.add("active");
+        }
+    }
+}
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
+
+/* DARK MODE TOGGLE */
+const toggle = document.getElementById("toggleDark");
+toggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    toggle.textContent = 
+        document.body.classList.contains("dark") ? "☀️" : "🌙";
+});
+</script>
+
+</body>
+</html>
